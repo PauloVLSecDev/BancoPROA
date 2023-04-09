@@ -1,0 +1,184 @@
+<html>
+
+<head>
+
+    <script>
+        var saldo = 100.5; //Float
+        var Nome = prompt(`Olá qual seu nome caro cliente ? `);
+
+        function inicio() {
+
+            var escolha = parseInt(prompt(`Olá ${Nome} é um prazer ter você por aquiSelecione uma opção \n 1 Saldo \n 2 Extrato \n 3. Saque \n 4.deposito \n 5. tranferencia \n 6 sair  `));
+
+            switch (escolha) {
+                case 1:
+
+                    let senhasaldo = Number(prompt(`digite sua senha com 4 digites para ver o saldo ${Nome}`))
+
+                    console.log(senhasaldo);
+
+                    if (senhasaldo == 3589) {
+                        ver_saldo()
+                    }
+                    else {
+                        alert(`senha incorreta por favor tente novamente`)
+                        inicio()
+                    }
+
+
+                case 2:
+
+                    let senhaextrato = Number(prompt(`digite sua senha com 4 digites para ver o extrato ${Nome}`))
+
+                    if (senhaextrato === 3589) {
+                        verextrato()
+                    }
+                    else {
+
+                        alert(`senha incorreta por favor tente novamente`)
+                        inicio()
+                    }
+
+
+                case 3:
+
+                    let senhasaque = Number(prompt(`digite sua senha com 4 digites para saque ${Nome}`))
+
+                    if (senhasaque == 3589) {
+                        fazer_saque()
+                    }
+                    else {
+
+                        alert(`senha incorreta por favor tente novamente`)
+                        inicio()
+                    }
+
+                case 4:
+                    let senhadeposito = Number(prompt(`digite sua senha com 4 digites para deposito ${Nome}`))
+
+                    if (senhadeposito == 3589) {
+                        fazer_deposito()
+                    }
+                    else {
+
+                        alert(`senha incorreta por favor tente novamente`)
+                        inicio()
+                    }
+
+                case 5:
+                    let senhatransferencia = Number(prompt(`digite sua senha com 4 digites para tranfetencia ${Nome}`))
+
+                    if (senhatransferencia == 3589) {
+                        fazer_tranferencia()
+                    }
+                    else {
+                        alert("Operação invalida")
+                        inicio()
+                    }
+
+                case 6:
+
+                    sair();
+
+                default:
+
+                    erro()
+
+            }
+
+        }
+
+        function ver_saldo() {
+            alert('Seu saldo atual é: ' + saldo);
+            inicio();
+        }
+
+
+        function fazer_deposito() {
+
+
+            var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+            // Not a Number
+
+            if (isNaN(deposito) || deposito === '') {
+                alert('Por favor, informe um número:');
+                fazer_deposito();
+            } else if (deposito => 1) {
+                saldo += deposito;
+                // saldo = saldo + deposito;
+                ver_saldo();
+            }
+        }
+
+        function fazer_saque() {
+
+            var saque = parseFloat(prompt('Qual o valor para saque?'));
+
+            if (isNaN(saque) || saque === '') {
+                alert('Por favor, informe um número valido')
+                fazer_saque()
+
+            }
+
+            else if (saque > 0 && saque < saldo) {
+                saldo -= saque;
+                ver_saldo();
+            }
+            else {
+
+                alert("operação invalida ")
+
+            }
+        }
+        function verextrato() {
+
+            alert(" CARTÃO VISA  300D  \n CARTÃOO NUBANK 43D \n PICPAY PASTEL DO ZE 20D \n TRANFERENCIA 100.5C ")
+
+        }
+
+
+        function fazer_tranferencia() {
+    let conta = 2023;
+    let transferir = Number(prompt("Qual o número da conta para transferência? Digite os quatro números"));
+    console.log(`Número da conta ${transferir}`);
+    console.log(`Contas disponíveis ${conta}`);
+
+    let valordetf = undefined; // Definindo a variável fora do escopo do if
+
+    if (transferir === conta) {
+        valordetf = Number(prompt("Quanto deseja transferir?"));
+        if (valordetf > 0 && valordetf <= saldo) { // Verificando se o valor é válido
+            saldo -= valordetf;
+            ver_saldo();
+            console.log(`${valordetf} valor transferido`);
+        } else {
+            alert(`Valor inválido`);
+        }
+    } else {
+        alert(`Conta inválida`);
+    }
+}
+
+        function erro() {
+            alert('Por favor, informe um número entre 1 e 4');
+            inicio();
+        }
+
+        function sair() {
+            let confirma = confirm('Você deseja sair ?');
+            if (confirma) {
+                window.close()
+            } else {
+                inicio()
+            }
+        }
+
+        inicio();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
